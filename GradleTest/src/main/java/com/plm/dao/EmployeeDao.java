@@ -10,30 +10,35 @@ import com.plm.repository.EmployeeRepository;
 @Component
 public class EmployeeDao {
 
-@Autowired
-EmployeeRepository repository;	
+	@Autowired
+	EmployeeRepository repository;	
 
-//Create
-public void createNewEmployee(Employee employee){
-	repository.save(employee);
-}
-
-//Read
-public List<Employee> getAllEmployee(){
-	return ( List<Employee> ) repository.findAll();
-}
-
-public void saveEmployee(Employee employee) {
-	repository.save(employee);
-}
+	//Create
+	public void saveEmployee(Employee employee) {
+		repository.save(employee);
+	}
+	
+	
+	//Read
+	public List<Employee> getAllEmployee(){
+		return ( List<Employee> ) repository.findAll();
+	}
 
 
-//Update
 
-//Delete
+	//Search BY Id
+	//Find one Employee
+	public Employee findEmployee(Long empid) {
+
+		return repository.findOne(empid);
+	}
 
 
-//Search BY Id
+	//Update
+
+	//Delete
+
+
 
 
 }

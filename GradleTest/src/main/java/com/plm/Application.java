@@ -1,7 +1,14 @@
 package com.plm;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.plm.beans.Address;
+import com.plm.beans.Department;
+import com.plm.beans.Role;
+import com.plm.repository.DepartmentRepository;
+import com.plm.repository.RoleRepository;
 
 
 
@@ -10,7 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-}
+	}
 
 	/*
 public CommandLineRunner addData(EmployeeRepository respository){
@@ -35,6 +42,23 @@ public CommandLineRunner addData(EmployeeRepository respository){
 			respository.save(new Project("Mindsphrere 1", new Date(), new Date(),list));
 		};
 	}
-	*/
+	 */
+
+	public CommandLineRunner addData(DepartmentRepository respository){
+		return (args) -> {
+			respository.save(new Department("Developement", new Address("pune", 411025, "Baner")));
+			respository.save(new Department("Quality Engineering", new Address("pune", 415214, "Karve Rd")));
+			respository.save(new Department("Production Engineering", new Address("pune", 487522, "University Rd")));
+		};
+	}
 	
+	public CommandLineRunner addData1(RoleRepository respository){
+		return (args) -> {
+			respository.save(new Role("Developer"));
+			respository.save(new Role("Q/A"));
+			respository.save(new Role("Team Lead"));
+			respository.save(new Role("Manager"));
+		};
+	}
+
 }
