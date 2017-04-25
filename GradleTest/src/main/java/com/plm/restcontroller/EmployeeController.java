@@ -2,9 +2,10 @@ package com.plm.restcontroller;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
+import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,11 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.plm.beans.Employee;
 import com.plm.dao.EmployeeDao;
-import com.plm.dao.RoleDao;
 import com.plm.exceptions.EmployeeException;
-import com.plm.repository.EmployeeRepository;
 
-@RestController("/employee")
+@RestController
 public class EmployeeController {
 
 	@Autowired
@@ -28,7 +27,7 @@ public class EmployeeController {
 	 * @param employee
 	 * @return List<Employee>
 	 */
-	@RequestMapping(method= RequestMethod.GET , produces ={"application/json"})
+	@RequestMapping(path="/employee", method= RequestMethod.GET , produces ={"application/json"})
 	public List<Employee> getAllEmployee(Employee employee) {
 		return empdao.getAllEmployee();
 	}
@@ -54,7 +53,7 @@ public class EmployeeController {
 	 * @param employee
 	 */
 
-	@RequestMapping(method= RequestMethod.POST , produces ={"application/json"}, consumes={"application/json"})
+	@RequestMapping(path="/employee", method= RequestMethod.POST , produces ={"application/json"}, consumes={"application/json"})
 	public void createEmployee(@RequestBody Employee employee) {
 		empdao.saveEmployee(employee);
 	}
@@ -66,13 +65,12 @@ public class EmployeeController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(path="/{id}" , 
-			method= RequestMethod.GET , 
-			produces ={"application/json"})
-	public  Employee findOne(@PathParam("id") Long id){
-		Employee employee= empdao.findEmployee(id);
+	@RequestMapping(path="/employee/{id}" , method= RequestMethod.GET , produces ={"application/json"})
+	public  Employee getSingleEmployee(@QueryParam("id") Long id){
+
+		System.err.println("Employye id ="+ id );
 		
-		System.err.println("Employye id ="+ id);
+		Employee employee= empdao.findEmployee(id);
 		if(employee == null)
 			try {
 				throw new EmployeeException(0);

@@ -18,6 +18,4 @@ public class MindEntity {
 		this.id = id;
 	}
 	
-	
-	
 }
