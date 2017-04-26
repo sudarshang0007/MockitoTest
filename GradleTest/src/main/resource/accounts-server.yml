@@ -6,8 +6,23 @@ spring:
     enabled: false           # Ignore Eureka dashboard FreeMarker templates
   thymeleaf:
     cache: false             # Allow Thymeleaf templates to be reloaded at runtime
-    prefix: classpath:/accounts-server/templates/    # Trailing / mandatory
-                             # Template location for this application only
+    prefix: classpath:/accounts-server/templates/    # Trailing / mandatory # Template location for this application only
+  datasource:
+        password: root
+        testWhileIdle: true
+        url: jdbc:mysql://localhost:3306/first
+        username: root
+        validationQuery: SELECT 1
+    jpa:
+        hibernate:
+            ddl-auto: update
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5Dialect
+        show-sql: true
+
+
 
 # Map the error path to error template (for Thymeleaf)
 error:
