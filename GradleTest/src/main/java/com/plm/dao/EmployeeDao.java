@@ -28,7 +28,7 @@ public class EmployeeDao {
 
 	//Search BY Id
 	//Find one Employee
-	public Employee findEmployee(Long empid) {
+	public Employee findEmployee(Integer empid) {
 
 		return repository.findOne(empid);
 	}

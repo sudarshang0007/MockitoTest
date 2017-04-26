@@ -2,8 +2,6 @@ package com.plm.restcontroller;
 
 import java.util.List;
 
-import javax.ws.rs.QueryParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,7 +64,7 @@ public class EmployeeController {
 	 * @return
 	 */
 	@RequestMapping(path="/employee/{id}" , method= RequestMethod.GET , produces ={"application/json"})
-	public  Employee getSingleEmployee(@QueryParam("id") Long id){
+	public  Employee getSingleEmployee(@PathVariable("id") Integer id){
 
 		System.err.println("Employye id ="+ id );
 		
